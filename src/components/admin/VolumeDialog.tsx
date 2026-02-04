@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -29,6 +29,31 @@ export function VolumeDialog({ open, onOpenChange, volume, onSave }: VolumeDialo
         content: volume?.content || '',
         published: volume?.published || false,
     });
+
+    // Actualizar el estado del formulario cuando cambia el volumen (ej. al editar)
+    useEffect(() => {
+        if (volume) {
+            setFormData({
+                title: volume.title,
+                number: volume.number,
+                year: volume.year,
+                cover_url: volume.cover_url || '',
+                pdf_url: volume.pdf_url || '',
+                content: volume.content || '',
+                published: volume.published,
+            });
+        } else {
+            setFormData({
+                title: '',
+                number: '',
+                year: new Date().getFullYear().toString(),
+                cover_url: '',
+                pdf_url: '',
+                content: '',
+                published: false,
+            });
+        }
+    }, [volume, open]);
 
     const [uploadingCover, setUploadingCover] = useState(false);
     const [uploadingPdf, setUploadingPdf] = useState(false);

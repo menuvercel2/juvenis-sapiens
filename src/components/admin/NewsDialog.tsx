@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -29,6 +29,31 @@ export function NewsDialog({ open, onOpenChange, news, onSave }: NewsDialogProps
         published_date: news?.published_date || new Date().toISOString().split('T')[0],
         status: news?.status || 'draft',
     });
+
+    // Actualizar el estado del formulario cuando cambia la noticia (ej. al editar)
+    useEffect(() => {
+        if (news) {
+            setFormData({
+                title: news.title,
+                category: news.category,
+                extract: news.extract || '',
+                content: news.content || '',
+                image_url: news.image_url || '',
+                published_date: news.published_date || new Date().toISOString().split('T')[0],
+                status: news.status,
+            });
+        } else {
+            setFormData({
+                title: '',
+                category: 'Lanzamiento',
+                extract: '',
+                content: '',
+                image_url: '',
+                published_date: new Date().toISOString().split('T')[0],
+                status: 'draft',
+            });
+        }
+    }, [news, open]);
 
     const [uploadingImage, setUploadingImage] = useState(false);
     const [loading, setLoading] = useState(false);
