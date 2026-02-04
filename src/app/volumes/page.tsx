@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Search, BookOpen, Download, Loader2 } from 'lucide-react';
 import { volumeService } from '@/lib/volumeService';
 import type { Volume } from '@/types/database';
+import Link from 'next/link';
 
 export default function VolumesPage() {
     const [searchQuery, setSearchQuery] = useState('');
