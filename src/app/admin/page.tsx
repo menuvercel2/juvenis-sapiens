@@ -285,7 +285,7 @@ export default function AdminPage() {
                         </div>
 
                         {/* Recent Activity */}
-                        <div className="grid lg:grid-cols-2 gap-6">
+                        <div className="grid md:grid-cols-2 gap-6">
                             <Card className="bg-white border-green-200">
                                 <CardHeader>
                                     <div className="flex justify-between items-center">
@@ -304,8 +304,8 @@ export default function AdminPage() {
                                                 <p className="text-sm text-gray-600 line-clamp-1">{vol.title}</p>
                                             </div>
                                             <span className={`text-xs px-2 py-1 rounded border ${vol.published
-                                                    ? 'bg-green-100 text-green-700 border-green-200'
-                                                    : 'bg-yellow-100 text-yellow-700 border-yellow-200'
+                                                ? 'bg-green-100 text-green-700 border-green-200'
+                                                : 'bg-yellow-100 text-yellow-700 border-yellow-200'
                                                 }`}>
                                                 {vol.published ? 'Publicado' : 'Borrador'}
                                             </span>
@@ -335,8 +335,8 @@ export default function AdminPage() {
                                                 <p className="text-sm text-gray-600">{newsItem.category}</p>
                                             </div>
                                             <span className={`text-xs px-2 py-1 rounded border ${newsItem.status === 'published'
-                                                    ? 'bg-green-100 text-green-700 border-green-200'
-                                                    : 'bg-yellow-100 text-yellow-700 border-yellow-200'
+                                                ? 'bg-green-100 text-green-700 border-green-200'
+                                                : 'bg-yellow-100 text-yellow-700 border-yellow-200'
                                                 }`}>
                                                 {newsItem.status === 'published' ? 'Publicado' : 'Borrador'}
                                             </span>
@@ -383,8 +383,8 @@ export default function AdminPage() {
                                                     <td className="p-4 text-gray-600">{vol.year}</td>
                                                     <td className="p-4">
                                                         <span className={`text-xs px-2 py-1 rounded border ${vol.published
-                                                                ? 'bg-green-100 text-green-700 border-green-200'
-                                                                : 'bg-yellow-100 text-yellow-700 border-yellow-200'
+                                                            ? 'bg-green-100 text-green-700 border-green-200'
+                                                            : 'bg-yellow-100 text-yellow-700 border-yellow-200'
                                                             }`}>
                                                             {vol.published ? 'Publicado' : 'Borrador'}
                                                         </span>
@@ -448,8 +448,8 @@ export default function AdminPage() {
                                                     </td>
                                                     <td className="p-4">
                                                         <span className={`text-xs px-2 py-1 rounded border ${newsItem.status === 'published'
-                                                                ? 'bg-green-100 text-green-700 border-green-200'
-                                                                : 'bg-yellow-100 text-yellow-700 border-yellow-200'
+                                                            ? 'bg-green-100 text-green-700 border-green-200'
+                                                            : 'bg-yellow-100 text-yellow-700 border-yellow-200'
                                                             }`}>
                                                             {newsItem.status === 'published' ? 'Publicado' : 'Borrador'}
                                                         </span>

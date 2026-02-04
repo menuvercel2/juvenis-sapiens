@@ -46,11 +46,17 @@ export function VolumeDialog({ open, onOpenChange, volume, onSave }: VolumeDialo
 
         try {
             const bucket = type === 'cover' ? 'covers' : 'pdfs';
-            // Create a unique filename: volumes/V15-N2-1712345678.pdf
+
+            // Mejoramos la generación del nombre del archivo
             const timestamp = Date.now();
-            const sanitizedNumber = formData.number.replace(/[^a-z0-9]/gi, '-').toLowerCase();
+            const prefix = formData.number
+                ? formData.number.replace(/[^a-z0-9]/gi, '-').toLowerCase()
+                : 'vol';
+
             const extension = file.name.split('.').pop();
-            const fileName = `${sanitizedNumber}-${timestamp}.${extension}`;
+            // Limpiamos guiones dobles y guiones al inicio/final
+            const cleanPrefix = prefix.replace(/-+/g, '-').replace(/^-|-$/g, '');
+            const fileName = `${cleanPrefix || 'vol'}-${timestamp}.${extension}`;
 
             const publicUrl = await storageService.uploadFile(bucket, fileName, file);
 
@@ -89,7 +95,7 @@ export function VolumeDialog({ open, onOpenChange, volume, onSave }: VolumeDialo
                     </DialogTitle>
                 </DialogHeader>
                 <form onSubmit={handleSubmit} className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div className="space-y-2">
                             <Label htmlFor="number" className="text-gray-700">Número *</Label>
                             <Input

@@ -68,8 +68,8 @@ export function HeroSection({ latestVolume, recentVolumes }: HeroSectionProps) {
                     {/* Visuals */}
                     <div className="flex-1 flex gap-6 items-center justify-center lg:justify-end">
                         {/* Main Cover */}
-                        <div className="relative group perspective-1000">
-                            <div className="w-[280px] h-[400px] bg-gradient-to-br from-green-500 to-green-600 rounded-lg shadow-2xl relative z-20 transform transition-transform group-hover:rotate-y-6 rotate-y-3 duration-500 flex items-center justify-center overflow-hidden border-2 border-green-700">
+                        <div className="relative group perspective-1000 w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[380px]">
+                            <div className="aspect-[2/3] bg-gradient-to-br from-green-500 to-green-600 rounded-lg shadow-2xl relative z-20 transform transition-transform group-hover:rotate-y-6 rotate-y-3 duration-500 flex items-center justify-center overflow-hidden border-2 border-green-700">
                                 {latestVolume.cover_url ? (
                                     <img src={latestVolume.cover_url} alt={latestVolume.title} className="w-full h-full object-cover" />
                                 ) : (
@@ -77,7 +77,7 @@ export function HeroSection({ latestVolume, recentVolumes }: HeroSectionProps) {
                                 )}
                             </div>
                             {/* Decorative pile */}
-                            <div className="absolute top-4 -right-4 w-[280px] h-[400px] bg-green-400/50 rounded-lg border-2 border-green-600/50 -z-10 rotate-6"></div>
+                            <div className="absolute top-4 -right-4 w-full h-full bg-green-400/50 rounded-lg border-2 border-green-600/50 -z-10 rotate-6"></div>
                         </div>
                     </div>
                 </div>

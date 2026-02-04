@@ -60,23 +60,41 @@ export function Navbar() {
                                 <Menu className="h-6 w-6" />
                             </Button>
                         </SheetTrigger>
-                        <SheetContent side="right" className="bg-white border-green-200 text-gray-900">
-                            <div className="flex flex-col gap-6 mt-8">
-                                {links.map((link) => (
-                                    <Link
-                                        key={link.href}
-                                        href={link.href}
-                                        onClick={() => setIsOpen(false)}
-                                        className="text-lg font-medium hover:text-green-600 transition-colors"
-                                    >
-                                        {link.label}
-                                    </Link>
-                                ))}
-                                <Link href="/contact" onClick={() => setIsOpen(false)}>
-                                    <Button className="w-full bg-green-600 text-white hover:bg-green-700">
-                                        Contacto
-                                    </Button>
+                        <SheetContent side="right" className="bg-white border-green-200 text-gray-900 p-0 flex flex-col">
+                            {/* Mobile Header inside Menu */}
+                            <div className="p-6 border-b border-green-100 bg-green-50/50">
+                                <Link href="/" onClick={() => setIsOpen(false)} className="text-xl font-bold tracking-tight flex items-center gap-2">
+                                    <span className="bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent">JUVENIS</span>
+                                    <span className="font-light text-gray-700">SAPIENS</span>
                                 </Link>
+                                <p className="text-xs text-gray-500 mt-2">Revista Digital Académica</p>
+                            </div>
+
+                            {/* Mobile Links */}
+                            <div className="flex flex-col flex-1 px-4 py-8">
+                                <div className="space-y-4">
+                                    {links.map((link) => (
+                                        <Link
+                                            key={link.href}
+                                            href={link.href}
+                                            onClick={() => setIsOpen(false)}
+                                            className="block px-4 py-3 text-lg font-medium text-gray-700 rounded-lg hover:bg-green-50 hover:text-green-600 transition-all border border-transparent hover:border-green-100"
+                                        >
+                                            {link.label}
+                                        </Link>
+                                    ))}
+                                </div>
+
+                                <div className="mt-auto space-y-4 pt-8 border-t border-green-50">
+                                    <Link href="/contact" onClick={() => setIsOpen(false)}>
+                                        <Button className="w-full bg-green-600 text-white hover:bg-green-700 h-12 text-base font-bold shadow-lg shadow-green-200">
+                                            Contacto
+                                        </Button>
+                                    </Link>
+                                    <div className="text-center">
+                                        <p className="text-xs text-gray-400">© {new Date().getFullYear()} Facultad de Biología, UH</p>
+                                    </div>
+                                </div>
                             </div>
                         </SheetContent>
                     </Sheet>

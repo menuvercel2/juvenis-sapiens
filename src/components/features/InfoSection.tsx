@@ -4,8 +4,8 @@ import Link from 'next/link';
 
 export function InfoSection() {
     const stats = [
-        { label: 'Años de Trayectoria', value: '15+' },
-        { label: 'Volúmenes Publicados', value: '42' },
+        { label: 'Años de Trayectoria', value: '6+' },
+        { label: 'Volúmenes Publicados', value: '7+' },
         { label: 'Artículos Indexados', value: '350+' },
     ];
 
@@ -14,9 +14,9 @@ export function InfoSection() {
             <div className="container mx-auto px-4 text-center">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">Sobre Juvenis Sapiens</h2>
                 <p className="max-w-3xl mx-auto text-lg text-gray-600 mb-8 leading-relaxed">
-                    Nuestra misión es fomentar el intercambio de conocimiento riguroso y accesible.
+                    Nuestra misión es fomentar el intercambio de conocimiento riguroso y accesible dentro y fuera de la Facultad de Biología de la Universidad de La Habana.
                     Publicamos investigaciones originales, revisiones críticas y ensayos que desafían las fronteras
-                    disciplinarias, conectando a la comunidad académica global.
+                    disciplinarias, conectando a la comunidad académica nacional e internacional.
                 </p>
 
                 <div className="flex justify-center mb-16">

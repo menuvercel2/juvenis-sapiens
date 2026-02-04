@@ -43,9 +43,13 @@ export function NewsDialog({ open, onOpenChange, news, onSave }: NewsDialogProps
 
         try {
             const timestamp = Date.now();
-            const sanitizedTitle = formData.title.substring(0, 20).replace(/[^a-z0-9]/gi, '-').toLowerCase();
+            const prefix = formData.title
+                ? formData.title.substring(0, 20).replace(/[^a-z0-9]/gi, '-').toLowerCase()
+                : 'news';
+
             const extension = file.name.split('.').pop();
-            const fileName = `news-${sanitizedTitle}-${timestamp}.${extension}`;
+            const cleanPrefix = prefix.replace(/-+/g, '-').replace(/^-|-$/g, '');
+            const fileName = `news-${cleanPrefix || 'article'}-${timestamp}.${extension}`;
 
             const publicUrl = await storageService.uploadFile('news', fileName, file);
 
@@ -95,7 +99,7 @@ export function NewsDialog({ open, onOpenChange, news, onSave }: NewsDialogProps
                         />
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div className="space-y-2">
                             <Label htmlFor="category" className="text-gray-700">Categoría *</Label>
                             <Select
