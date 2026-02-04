@@ -51,9 +51,9 @@ export function NewsSection({ news }: NewsSectionProps) {
                                 </p>
                             </CardContent>
                             <CardFooter>
-                                <Link href={`/news`}>
-                                    <Button variant="link" className="p-0 h-auto text-green-600 hover:text-green-700">
-                                        Leer más &rarr;
+                                <Link href={`/news/${item.id}`}>
+                                    <Button variant="link" className="p-0 h-auto text-green-600 hover:text-green-700 font-semibold group-hover:translate-x-1 transition-transform">
+                                        Leer noticia completa <ArrowRight className="ml-2 w-4 h-4" />
                                     </Button>
                                 </Link>
                             </CardFooter>

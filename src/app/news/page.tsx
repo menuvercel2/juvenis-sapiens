@@ -109,9 +109,11 @@ export default function NewsPage() {
                                     <p className="text-gray-600 leading-relaxed">
                                         {item.extract || (item.content ? item.content.substring(0, 200) + '...' : '')}
                                     </p>
-                                    <Button variant="link" className="p-0 h-auto text-green-600 hover:text-green-700">
-                                        Leer más <ArrowRight className="ml-2 w-4 h-4" />
-                                    </Button>
+                                    <Link href={`/news/${item.id}`}>
+                                        <Button variant="link" className="p-0 h-auto text-green-600 hover:text-green-700 font-semibold group-hover:translate-x-1 transition-transform">
+                                            Leer noticia completa <ArrowRight className="ml-2 w-4 h-4" />
+                                        </Button>
+                                    </Link>
                                 </CardContent>
                             </Card>
                         ))}
