@@ -4,45 +4,25 @@ import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { ArrowRight, Calendar } from 'lucide-react';
+import type { News } from '@/types/database';
 
-export function NewsSection() {
-    const news = [
-        {
-            id: 1,
-            title: 'Convocatoria Abierta Vol. 16',
-            date: '15 Ene 2026',
-            category: 'Convocatoria',
-            excerpt: 'Invitamos a investigadores a enviar sus manuscritos sobre "Tecnología y Sociedad" para nuestra próxima edición especial.',
-            type: 'call'
-        },
-        {
-            id: 2,
-            title: 'Simposio Internacional 2026',
-            date: '20 Feb 2026',
-            category: 'Evento',
-            excerpt: 'Únete a nosotros en el simposio anual donde presentaremos los hallazgos más relevantes del último año.',
-            type: 'event'
-        },
-        {
-            id: 3,
-            title: 'Nueva Indexación en Scopus',
-            date: '10 Feb 2026',
-            category: 'Lanzamiento',
-            excerpt: 'Celebramos nuestra inclusión en el índice de Scopus, un hito importante para la visibilidad de nuestros autores.',
-            type: 'news'
-        },
-    ];
+interface NewsSectionProps {
+    news: News[];
+}
+
+export function NewsSection({ news }: NewsSectionProps) {
+    if (news.length === 0) return null;
 
     return (
-        <section className="py-20 bg-slate-950">
+        <section className="py-20 bg-gradient-to-br from-white to-green-50">
             <div className="container mx-auto px-4">
                 <div className="flex justify-between items-end mb-10">
                     <div>
-                        <span className="text-amber-500 font-semibold tracking-wide text-sm uppercase">Actualidad</span>
-                        <h2 className="text-3xl font-bold text-white mt-2">Noticias y Novedades</h2>
+                        <span className="text-green-600 font-semibold tracking-wide text-sm uppercase">Actualidad</span>
+                        <h2 className="text-3xl font-bold text-gray-900 mt-2">Noticias y Novedades</h2>
                     </div>
                     <Link href="/news" className="hidden md:block">
-                        <Button variant="ghost" className="text-slate-400 hover:text-white">
+                        <Button variant="ghost" className="text-gray-600 hover:text-green-600">
                             Ver todas <ArrowRight className="ml-2 w-4 h-4" />
                         </Button>
                     </Link>
@@ -50,30 +30,32 @@ export function NewsSection() {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {news.map((item) => (
-                        <Card key={item.id} className="bg-slate-900 border-slate-800 hover:border-amber-500/30 transition-all hover:shadow-lg hover:shadow-amber-900/10 group">
+                        <Card key={item.id} className="bg-white border-green-200 hover:border-green-400 transition-all hover:shadow-lg group">
                             <CardHeader className="pb-3">
                                 <div className="flex justify-between items-center mb-3">
-                                    <Badge variant={item.type === 'event' ? 'secondary' : 'default'} className="bg-slate-800 text-slate-300 hover:bg-slate-700">
+                                    <Badge variant="default" className="bg-green-100 text-green-700 hover:bg-green-200">
                                         {item.category}
                                     </Badge>
-                                    <div className="flex items-center text-xs text-slate-500">
+                                    <div className="flex items-center text-xs text-gray-500">
                                         <Calendar className="w-3 h-3 mr-1" />
-                                        {item.date}
+                                        {item.published_date ? new Date(item.published_date).toLocaleDateString() : 'Reciente'}
                                     </div>
                                 </div>
-                                <h3 className="text-xl font-bold text-slate-200 group-hover:text-amber-500 transition-colors line-clamp-2">
+                                <h3 className="text-xl font-bold text-gray-900 group-hover:text-green-600 transition-colors line-clamp-2">
                                     {item.title}
                                 </h3>
                             </CardHeader>
                             <CardContent>
-                                <p className="text-slate-400 text-sm leading-relaxed line-clamp-3">
-                                    {item.excerpt}
+                                <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
+                                    {item.extract || (item.content ? item.content.substring(0, 150) + '...' : '')}
                                 </p>
                             </CardContent>
                             <CardFooter>
-                                <Button variant="link" className="p-0 h-auto text-amber-500 hover:text-amber-400">
-                                    Leer más &rarr;
-                                </Button>
+                                <Link href={`/news`}>
+                                    <Button variant="link" className="p-0 h-auto text-green-600 hover:text-green-700">
+                                        Leer más &rarr;
+                                    </Button>
+                                </Link>
                             </CardFooter>
                         </Card>
                     ))}
@@ -81,7 +63,7 @@ export function NewsSection() {
 
                 <div className="mt-8 md:hidden text-center">
                     <Link href="/news">
-                        <Button variant="outline" className="w-full">Ver todas las noticias</Button>
+                        <Button variant="outline" className="w-full border-green-600 text-green-700 hover:bg-green-50">Ver todas las noticias</Button>
                     </Link>
                 </div>
             </div>
